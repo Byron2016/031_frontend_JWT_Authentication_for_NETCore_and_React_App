@@ -43,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Nav />
+        <Nav name = { name }/>
         <main className="form-signin">
           <Routes>
           <Route path="/" element={<Home name = { name } email = {email} />} />

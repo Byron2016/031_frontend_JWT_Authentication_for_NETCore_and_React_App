@@ -3,7 +3,9 @@ import {NoteListDB as Note } from '../../components/Notes/NoteListDB'
 import {NoteTypeDB } from '../../../../custom_typings/index'
 import {getRandomText} from '../../util/randomText'
 import {getRndInteger} from '../../util/randomNumber'
-import axios from "axios";
+import {getAllNotes} from '../../services/notes/getAllNotes'
+import {createNote} from '../../services/notes/createNote'
+
 
 import "./ListElements.css"
 
@@ -36,14 +38,11 @@ export const AlternoDB = () => {
   useEffect(() => {
     console.log('useEffect')
     setLoading(true)
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-        .then(response => {
-          // console.log('seteando las notas')
-          const {data} = response
-          // console.log(data)
-          setNotes(data)
-          setLoading(false)
-        })
+    getAllNotes()
+      .then(notes => {
+        setNotes(notes)
+        setLoading(false)
+      })
   }, [])
 
   
@@ -58,13 +57,9 @@ export const AlternoDB = () => {
       body: getRandomText(getRndInteger(20,120))
     }
 
-    axios
-      .post('https://jsonplaceholder.typicode.com/posts', noteToAddToState)
-      .then(response => {
-        const {data} = response
-        // console.log(data)
-        // debugger; // eslint-disable-line no-debugger
-        setNotes([...notes, data])
+    createNote(noteToAddToState)
+      .then(newNote => {
+        setNotes([...notes, newNote])
       })
 
     // setNotes(notes.concat(noteToAddToState))

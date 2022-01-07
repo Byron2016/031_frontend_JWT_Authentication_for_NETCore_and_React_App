@@ -3,6 +3,8 @@ import {NoteListDB as Note } from '../../components/Notes/NoteListDB'
 import {NoteTypeDB } from '../../../../custom_typings/index'
 import {getRandomText} from '../../util/randomText'
 import {getRndInteger} from '../../util/randomNumber'
+import axios from "axios";
+
 import "./ListElements.css"
 
 // export default function AlternDos(props : NoteType []) {
@@ -13,20 +15,35 @@ export const AlternoDB = () => {
   const [showAll, setShowAll] = useState(true);
   const [loading, setLoading] = useState(true)
 
+  // con fetch
+  // useEffect(() => {
+  //   console.log('useEffect')
+  //   setLoading(true)
+  //   setTimeout(() => {
+  //     console.log('ahora!')
+  //     fetch('https://jsonplaceholder.typicode.com/posts')
+  //       .then(response => response.json())
+  //       .then(json => {
+  //         console.log('seteando las notas')
+  //         setNotes(json)
+  //         setLoading(false)
+  //       })
+
+  //   },5000)
+  // }, [])
+
+  // con axios
   useEffect(() => {
     console.log('useEffect')
     setLoading(true)
-    setTimeout(() => {
-      console.log('ahora!')
-      fetch('https://jsonplaceholder.typicode.com/posts')
-        .then(response => response.json())
-        .then(json => {
-          console.log('seteando las notas')
-          setNotes(json)
+    axios.get('https://jsonplaceholder.typicode.com/posts')
+        .then(response => {
+          // console.log('seteando las notas')
+          const {data} = response
+          // console.log(data)
+          setNotes(data)
           setLoading(false)
         })
-
-    },5000)
   }, [])
 
   // console.log('notes: ', {notes})

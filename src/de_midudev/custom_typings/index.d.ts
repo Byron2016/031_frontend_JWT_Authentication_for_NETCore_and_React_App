@@ -4,3 +4,10 @@ export type NoteType = {
   date: string;
   important: boolean
 };
+
+export type NoteTypeDB = {
+  userId: number;
+  id: number;
+  title: string;
+  body: string
+};

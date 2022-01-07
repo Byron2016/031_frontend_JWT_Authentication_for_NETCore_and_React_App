@@ -9,7 +9,8 @@ import Register from "./pages/Register";
 
 // INICIO  midudev
 import {ListElements, ListElementsDos, ListElementsTres} from "./de_midudev/de_listado/src/pages/ListElements/ListElements";
-// import {AlternDos} from "./de_midudev/de_listado/src/pages/ListElements/AlternDos";
+import {ListElementsDB} from "./de_midudev/de_listado/src/pages/ListElementsDB/ListElementsDB";
+
 // FIN midudev 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
           <Route path="/listelements" element={<ListElements />} />
           <Route path="/listelementsdos" element={<ListElementsDos />} />
           <Route path="/listelementstres" element={<ListElementsTres />} />
+          <Route path="/listelementdb" element={<ListElementsDB />} />
           {/* FIN rutas midudev */}
           </Routes>
         </main>

@@ -7,6 +7,11 @@ import {BrowserRouter,Routes, Route} from "react-router-dom";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 
+// INICIO  midudev
+import {ListElements, ListElementsDos, ListElementsTres} from "./de_midudev/de_listado/src/pages/ListElements/ListElements";
+// import {AlternDos} from "./de_midudev/de_listado/src/pages/ListElements/AlternDos";
+// FIN midudev 
+
 function App() {
   // const [id, setId] = useState('');
   const [name, setName] = useState('');
@@ -34,21 +39,20 @@ function App() {
     )();
   })
 
-    // console.log({
-    //   'lugar':'En App.tsx',
-    //   name,
-    //   email,
-    // })
-    // <Route path="/" element={<Home  name = { name } email = {email} />} />
   return (
     <div className="App">
       <BrowserRouter>
-        <Nav name = { name }/>
+        <Nav name = { name } setName={setName} />
         <main className="form-signin">
           <Routes>
           <Route path="/" element={<Home name = { name } email = {email} />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          {/* INICIO rutas midudev */}
+          <Route path="/listelements" element={<ListElements />} />
+          <Route path="/listelementsdos" element={<ListElementsDos />} />
+          <Route path="/listelementstres" element={<ListElementsTres />} />
+          {/* FIN rutas midudev */}
           </Routes>
         </main>
       </BrowserRouter>

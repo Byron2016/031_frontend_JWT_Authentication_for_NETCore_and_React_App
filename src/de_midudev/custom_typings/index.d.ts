@@ -7,7 +7,7 @@ export type NoteType = {
 
 export type NoteTypeDB = {
   userId: number;
-  id: number;
+  id?: number;
   title: string;
   body: string
 };

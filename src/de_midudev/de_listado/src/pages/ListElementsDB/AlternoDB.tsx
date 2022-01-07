@@ -13,7 +13,7 @@ export const AlternoDB = () => {
   const [notes, setNotes] = useState([] as NoteTypeDB[]);
   const [newNote, setNewNote] = useState('');
   const [showAll, setShowAll] = useState(true);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   // con fetch
   // useEffect(() => {
@@ -46,22 +46,33 @@ export const AlternoDB = () => {
         })
   }, [])
 
-  // console.log('notes: ', {notes})
-  // debugger; // eslint-disable-line no-debugger
+  
 
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
     // console.log('notes: ', {notes})
     const noteToAddToState : NoteTypeDB  = {
-      userId: notes.length + 1,
-      id:  notes.length + 1,
+      userId: 1,
+      id:  0,
       title: newNote, 
       body: getRandomText(getRndInteger(20,120))
     }
 
+    axios
+      .post('https://jsonplaceholder.typicode.com/posts', noteToAddToState)
+      .then(response => {
+        const {data} = response
+        // console.log(data)
+        // debugger; // eslint-disable-line no-debugger
+        setNotes([...notes, data])
+      })
+
     // setNotes(notes.concat(noteToAddToState))
     // otra forma
-    setNotes([...notes, noteToAddToState])
+    // setNotes([...notes, noteToAddToState])
+
+  // console.log('notes: ', {notes})
+  // debugger; // eslint-disable-line no-debugger
 
     setNewNote('')
   }

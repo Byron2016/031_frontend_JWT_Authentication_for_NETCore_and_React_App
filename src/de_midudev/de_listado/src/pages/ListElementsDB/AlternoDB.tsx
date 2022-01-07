@@ -3,8 +3,7 @@ import {NoteListDB as Note } from '../../components/Notes/NoteListDB'
 import {NoteTypeDB } from '../../../../custom_typings/index'
 import {getRandomText} from '../../util/randomText'
 import {getRndInteger} from '../../util/randomNumber'
-import {getAllNotes} from '../../services/notes/getAllNotes'
-import {createNote} from '../../services/notes/createNote'
+import {create as createNote, getAll as getAllNotes } from '../../services/notes'
 
 
 import "./ListElements.css"
